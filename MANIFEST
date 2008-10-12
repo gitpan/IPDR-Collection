@@ -1,0 +1,10 @@
+Changes
+MANIFEST
+META.yml # Will be created by "make dist"
+Makefile.PL
+README
+lib/IPDR/Collection/Client.pm
+lib/IPDR/Collection/Cisco.pm
+examples/new_motorola_collect_tcp.pl
+examples/new_cisco_collect_tcp.pl
+t/64bitTest.t
