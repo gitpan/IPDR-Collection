@@ -1,5 +1,14 @@
-Revision history for IPDR-Cisco
+Revision history for IPDR-Collection
 
-0.01    Date/time
+0.07	16/10/2008
+	All module versions brought into line for the distribution
+	Makes it easier to maintain one version across the board.
+0.06	14/10/2008
+	Released into the real world after testing completed
+0.05	Made client and cisco have the same construct names
+0.04	Reworked the XDR handler
+0.03	Alpha state mark 2
+0.02	Alpha state
+0.01    01/09/2007
         First version, released on an unsuspecting world.
 

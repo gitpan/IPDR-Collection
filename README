@@ -1,15 +1,13 @@
 IPDR
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+IPDR is a method to collect statistical data for a variety of IP applications.
+Primarily this module ( two are contained in this distribtion ) focus on 
+Cisco UBR ( 7200 and 10k ) and Motorola BSR 6400. The later module should also
+work for any other IPDR compliant services.
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it get an idea of the modules uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+Make sure you actually LOOK at the test results otherwise when running the module
+strange results will occur if the test fails, even though the module will still
+install.
 
 INSTALLATION
 
@@ -25,8 +23,8 @@ SUPPORT AND DOCUMENTATION
 
 After installing, you can find documentation for this module with the perldoc command.
 
-    perldoc IPDR::Cisco
-    perldoc IPDR::Motorola
+    perldoc IPDR::Collection::Cisco
+    perldoc IPDR::Collection::Client
 
 You can also look for information at:
 
@@ -34,7 +32,7 @@ You can also look for information at:
         http://search.cpan.org/dist/IPDR
 
     CPAN Request Tracker:
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=IPDR
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Collection::IPDR
 
     AnnoCPAN, annotated CPAN documentation:
         http://annocpan.org/dist/IPDR

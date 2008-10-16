@@ -7,12 +7,11 @@ my $ipdr_client = new IPDR::Collection::Client (
 			[
 			VendorID => 'IPDR Client',
 			ServerIP => '10.1.1.1',
-			ServerPort => '12000',
+			ServerPort => '10000',
 			KeepAlive => 60,
 			Capabilities => 0x01,
 			DataHandler => \&display_data,
 			Timeout => 2,
-			DEBUG => 5
 			]
 			);
 

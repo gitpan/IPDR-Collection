@@ -7,8 +7,8 @@ my $ipdr_client = new IPDR::Collection::Cisco (
 			[
 			VendorID => 'IPDR Client',
 			ServerIP => '10.1.1.1',
-			ServerPort => '12000',
-			XMLDirectory => '/debug/directory/for/received/data',
+			ServerPort => '10000',
+			XMLDirectory => '/data/',
 			Timeout => 2,
 			Type => 'docsis',
 			DataHandler => \&display_data,
@@ -35,8 +35,6 @@ sub display_data
 my ( $remote_ip ) = shift;
 my ( $remote_port ) = shift;
 my ( $data ) = shift;
-
-print "received ipdr from '$remote_ip'\n";
 
 }
 

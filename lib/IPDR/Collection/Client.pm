@@ -12,20 +12,19 @@ IPDR::Collection::Client - IPDR Collection Client
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
 This is a IPDR module primarily written to connect and collect data
 using IPDR from a Motorola BSR6400 CMTS. Some work is still required.
 
-Please see examples directory on how this module works.
-
-<release not found, using template>
+If you need an example you will need to email me as this is currently
+changing between version releases.
 
 =head1 FUNCTIONS
 
@@ -40,12 +39,8 @@ sub new {
 
         my ( $class , $attr ) =@_;
 
-	$self->{_GLOBAL}{'DEBUG'}=0;
-
         while (my($field, $val) = splice(@{$attr}, 0, 2))
                 { $self->{_GLOBAL}{$field}=$val; }
-
-        $self->{_GLOBAL}{'STATUS'}="OK";
 
         return $self;
 }
@@ -58,338 +53,295 @@ my ( $self ) = shift;
 sub construct_capabilities
 {
 my ( $self ) = shift;
-my ($set_capabilities) =1;
-return $set_capabilities;
+my ( $required_capabilities ) = shift;
 }
 
 sub create_vendor_id
 {
 my ($vendor_name) =@_;
-my ( $utf8string);
-return $utf8string;
 }
 
 sub generate_ipdr_message_header
 {
 my ( $self ) = shift;
-my ( $header ) =1;
-return ($header);
+my ( $version ) = shift;
+my ( $message_id ) = shift;
+my ( $session_id ) = shift;
+my ( $length ) = shift;
 }
 
 sub return_current_type
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub decode_message_type
 {
 my ( $self ) = shift;
-return 0;
 }
 
 sub send_disconnect
 {
 my ( $self ) = shift;
-my ( $result ) =1;
-return $result;
+my ( $data ) = shift;
 }
 
 sub send_flow_stop
 {
 my ( $self ) = shift;
-my ( $result ) = 1;
-return $result;
+my ( $data ) = shift;
+my ( $code ) = shift;
+my ( $reason ) = shift;
 }
 
 sub send_get_keepalive
 {
 my ( $self ) = shift;
-my ( $result ) = 1;
-return $result;
+my ( $data ) = shift;
 }
 
 sub send_get_sessions
 {
 my ( $self ) = shift;
-my ( $result ) = 1;
-return $result;
+my ( $data ) = shift;
 }
 
 sub send_data_ack
 {
 my ( $self ) = shift;
-my ( $result ) = 1;
-return $result;
+my ( $config_id ) = shift;
+my ( $seq_number ) = shift;
 }
 
 sub send_final_template_data_ack
 {
 my ( $self ) = shift;
-my ( $result ) = 1;
-return $result;
+my ( $data ) = shift;
 }
 
 sub send_flow_start_message
 {
 my ( $self ) = shift;
-my ( $result ) = 1;
-return $result;
+my ( $data ) = shift;
 }
 
 sub send_connect_message
 {
 my ( $self ) = shift;
-my $result = 1;
-return $result;
 }
 
 sub construct_data_ack
 {
 my ( $self ) = shift;
-my ( $header ) =1;
-return $header;
+my ( $config_id ) = shift;
+my ( $sequence ) = shift;
 }
 
 
 sub construct_final_template_data_ack
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
 }
 
 sub construct_flow_stop
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
+my ( $code ) = shift;
+my ( $reason ) = shift;
 }
 
 sub construct_disconnect
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
 }
 
 
 sub construct_get_sessions
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
 }
 
 sub construct_get_keepalive
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
 }
 
 
 sub construct_flow_start
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
 }
 
 sub construct_connect_message
 {
 my ( $self ) = shift;
-my ( $header ) = 1;
-return $header;
 }
 
 sub disconnect
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub connect
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub connected
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub send_message
 {
 my ( $self ) = shift;
-return 0;
+my ( $message ) = shift;
 }
 
 sub create_initiator_id
 {
 my ( $self ) = @_;
-my ( $initiator_id ) = 1;
-return $initiator_id;
 }
 
 sub _IpQuadToInt 
 {
 my ($self)= shift;
-my ($IpInt) =1;
+my($Quad) = shift; 
+if ( !$Quad ) { return 0; }
+my($Ip1, $Ip2, $Ip3, $Ip4) = split(/\./, $Quad);
+my($IpInt) = (($Ip1 << 24) | ($Ip2 << 16) | ($Ip3 << 8) | $Ip4);
 return($IpInt);
 }
 
-sub _IpIntToQuad { 
-my($Int) = 1;
-return($Int);
+sub _IpIntToQuad { my($Int) = @_;
+my($Ip1) = $Int & 0xFF; $Int >>= 8;
+my($Ip2) = $Int & 0xFF; $Int >>= 8;
+my($Ip3) = $Int & 0xFF; $Int >>= 8;
+my($Ip4) = $Int & 0xFF; return("$Ip4.$Ip3.$Ip2.$Ip1");
 }
 
 sub _message_types
 {
-my ( %messages ) = (
-                );
-return \%messages;
 }
 
 sub _transpose_message_numbers
 {
-my ( $message_number ) = 1;
-return $message_number;
+my ( $message_number ) =@_;
 }
 
 sub _transpose_message_names
 {
-my ( $message_name ) =1;
-return $message_name;
+my ( $message_name ) =@_;
 }
 
 sub _extract_template_data
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub _extract_utf8_string
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_ip_string
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_int
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_short
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_unknown
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data, $count ) = @_;
 }
 
 sub _extract_char
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_mac
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_long
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub _extract_list
 {
-my ( $data ) = 1;
-return ($data);
+my ( $data ) = @_;
 }
 
 sub template_store
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub template_return
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub template_value_definitions
 {
-my %template_params;
-return %template_params;
 }
 
 sub decode_64bit_number
 {
-# see comments on 64bit stuff.
-my ( $message ) =1;
-return $message;
+my ( $message ) =@_;
 }
 
 sub encode_64bit_number
 {
-my ( $number ) = 1;
-return $number;
+my ( $number ) = @_;
 }
+
+# *****************************************************************
 
 sub check_data_available
 {
 my ( $self ) = shift;
-return 1;
 }
+
+# ***************************************************************
 
 sub check_data_handles
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub get_data_segment
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub get_internal_value
 {
 my ( $self ) = shift;
-return 1;
 }
 
 sub set_internal_value
 {
 my ( $self ) = shift;
-return 1;
+my ( $attrib ) = shift;
+my ( $value ) = shift;
 }
 
 sub decode_data
 {
 my ( $self ) = shift;
-return 1;
 }
 
 =head1 AUTHOR
@@ -433,6 +385,8 @@ L<http://search.cpan.org/dist/IPDR-Collection-Client>
 =back
 
 =head1 ACKNOWLEDGEMENTS
+
+Thanks to http://www.streamsolutions.co.uk/ for my Flash Streaming Server
 
 =head1 COPYRIGHT & LICENSE
 
