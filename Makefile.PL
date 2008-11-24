@@ -7,7 +7,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME                => 'IPDR::Collection',
     AUTHOR              => 'Andrew S. Kennedy <shamrock@cpan.org>',
-    VERSION_FROM        => 'lib/IPDR/Collection.pm',
+    VERSION_FROM        => 'lib/IPDR/Collection/Client.pm',
     ABSTRACT       	=> 'IPDR Client Modules',
     PL_FILES            => {},
     PREREQ_PM => {

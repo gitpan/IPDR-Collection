@@ -1,9 +1,30 @@
-Revision history for IPDR-Collection
+Revision history for Collection-IPDR
 
-0.07	16/10/2008
-	All module versions brought into line for the distribution
-	Makes it easier to maintain one version across the board.
-0.06	14/10/2008
+0.10	21/11/2008
+	Modified some of the DATA_ACK messaging so large sequence sets
+	of data are ACKd correctly. ( in someways a bug previously )
+	Added 64bit check upon start up. Important as some users reported
+	problems with the data but in fact turned out to be non 64bit
+	OS or installations of Perl ( make test anyone? )
+0.09	9/11/2008
+	Added support for 5.1 series software for Motorola BSR
+	Some TCP and packet handling changes cause 0.08 to break
+	Added nice connection failure state
+0.08	3/11/2008
+	DOCSIS 1.1 & 3 supported properly now.
+	Multiple flows caused issues with session counting. This is
+	now resolved.
+	Added additional feature to XDR handler to return the RAW data
+	before processing to allow independent debugging.
+	Tidied up some memory leak issues
+	Started work on an IPDR relay function. This module will connect/get
+	IPDR data then allow other clients to connect to it for relay. Useful
+	to allow vendors/third parties access to the data but not access to
+	the original source due to security.
+0.07    16/10/2008
+        All module versions brought into line for the distribution
+        Makes it easier to maintain one version across the board.
+0.06	16/10/2008
 	Released into the real world after testing completed
 0.05	Made client and cisco have the same construct names
 0.04	Reworked the XDR handler

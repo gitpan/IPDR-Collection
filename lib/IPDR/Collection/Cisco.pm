@@ -14,11 +14,11 @@ IPDR::Collection::Cisco - IPDR Collection Client (Cisco Specification)
 
 =head1 VERSION
 
-Version 0.07
+Version 0.10
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.10';
 
 =head1 SYNOPSIS
 
@@ -37,15 +37,13 @@ sub new {
 
         my ( $class , $attr ) =@_;
 
-        while (my($field, $val) = splice(@{$attr}, 0, 2))
-                { $self->{_GLOBAL}{$field}=$val; }
-
         return $self;
 }
 
 sub get_data_segment
 {
 my ( $self ) = shift;
+return 1;
 }
 
 sub return_error
@@ -77,6 +75,7 @@ my ( $self ) = shift;
 sub send_connection_header
 {
 my ( $self ) = shift;
+my ( $handle ) = shift;
 }
 
 sub _process_docsis
@@ -98,7 +97,7 @@ Andrew S. Kennedy, C<< <shamrock at cpan.org> >>
 
 Please report any bugs or feature requests to
 C<bug-ipdr-cisco at rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=IPDR-Collection-Cisco>.
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=IPDR-Cisco>.
 I will be notified, and then you'll automatically be notified of progress on
 your bug as I make changes.
 
@@ -106,7 +105,7 @@ your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc IPDR::Collection::Cisco
+    perldoc IPDR::Cisco
 
 You can also look for information at:
 
@@ -114,19 +113,19 @@ You can also look for information at:
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/IPDR-Collection-Cisco>
+L<http://annocpan.org/dist/IPDR-Cisco>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/IPDR-Collection-Cisco>
+L<http://cpanratings.perl.org/d/IPDR-Cisco>
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=IPDR-Collection-Cisco>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=IPDR-Cisco>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/IPDR-Collection-Cisco>
+L<http://search.cpan.org/dist/IPDR-Cisco>
 
 =back
 
@@ -143,4 +142,4 @@ under the same terms as Perl itself.
 
 =cut
 
-1; # End of IPDR::Collection::Cisco
+1; # End of IPDR::Cisco

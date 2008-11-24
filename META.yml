@@ -1,8 +1,8 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         IPDR-Collection
-version:      0.07
-version_from: lib/IPDR/Collection.pm
+version:      0.10
+version_from: lib/IPDR/Collection/Client.pm
 installdirs:  site
 requires:
     Test::More:                    0

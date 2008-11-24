@@ -5,10 +5,10 @@ use IPDR::Collection::Cisco;
 
 my $ipdr_client = new IPDR::Collection::Cisco (
 			[
-			VendorID => 'IPDR Client',
-			ServerIP => '10.1.1.1',
-			ServerPort => '10000',
-			XMLDirectory => '/data/',
+			VendorID => 'VirginMedia IPDR Client',
+			ServerIP => '213.48.102.216',
+			ServerPort => '15000',
+			XMLDirectory => '/home/poller/XMLDumps/',
 			Timeout => 2,
 			Type => 'docsis',
 			DataHandler => \&display_data,
@@ -35,6 +35,19 @@ sub display_data
 my ( $remote_ip ) = shift;
 my ( $remote_port ) = shift;
 my ( $data ) = shift;
+
+print "received ipdr from '$remote_ip'\n";
+
+sleep(60);
+
+#foreach my $sequence ( sort { $a<=> $b } keys %{$data} )
+#	{
+#	print "Sequence  is '$sequence'\n";
+#	foreach my $attribute ( keys %{${$data}{$sequence}} )
+#		{
+#		print "Sequence '$sequence' attribute '$attribute' value '${$data}{$sequence}{$attribute}'\n";
+#		}
+#	}
 
 }
 

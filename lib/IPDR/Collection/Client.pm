@@ -12,11 +12,11 @@ IPDR::Collection::Client - IPDR Collection Client
 
 =head1 VERSION
 
-Version 0.07
+Version 0.10
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.10';
 
 =head1 SYNOPSIS
 
@@ -25,6 +25,8 @@ using IPDR from a Motorola BSR6400 CMTS. Some work is still required.
 
 If you need an example you will need to email me as this is currently
 changing between version releases.
+
+This version is confirmed to work with 5.1.0 on a Motorola.
 
 =head1 FUNCTIONS
 
@@ -38,9 +40,6 @@ sub new {
         bless $self;
 
         my ( $class , $attr ) =@_;
-
-        while (my($field, $val) = splice(@{$attr}, 0, 2))
-                { $self->{_GLOBAL}{$field}=$val; }
 
         return $self;
 }
@@ -207,17 +206,9 @@ sub _IpQuadToInt
 {
 my ($self)= shift;
 my($Quad) = shift; 
-if ( !$Quad ) { return 0; }
-my($Ip1, $Ip2, $Ip3, $Ip4) = split(/\./, $Quad);
-my($IpInt) = (($Ip1 << 24) | ($Ip2 << 16) | ($Ip3 << 8) | $Ip4);
-return($IpInt);
 }
 
 sub _IpIntToQuad { my($Int) = @_;
-my($Ip1) = $Int & 0xFF; $Int >>= 8;
-my($Ip2) = $Int & 0xFF; $Int >>= 8;
-my($Ip3) = $Int & 0xFF; $Int >>= 8;
-my($Ip4) = $Int & 0xFF; return("$Ip4.$Ip3.$Ip2.$Ip1");
 }
 
 sub _message_types
@@ -237,6 +228,8 @@ my ( $message_name ) =@_;
 sub _extract_template_data
 {
 my ( $self ) = shift;
+my ( $template_data ) = shift;
+my ( $template_extract) = shift;
 }
 
 sub _extract_utf8_string
@@ -261,7 +254,6 @@ my ( $data ) = @_;
 
 sub _extract_unknown
 {
-my ( $data, $count ) = @_;
 }
 
 sub _extract_char
@@ -287,6 +279,7 @@ my ( $data ) = @_;
 sub template_store
 {
 my ( $self ) = shift;
+my ( $data ) = shift;
 }
 
 sub template_return
@@ -300,6 +293,7 @@ sub template_value_definitions
 
 sub decode_64bit_number
 {
+# see comments on 64bit stuff.
 my ( $message ) =@_;
 }
 
@@ -307,8 +301,6 @@ sub encode_64bit_number
 {
 my ( $number ) = @_;
 }
-
-# *****************************************************************
 
 sub check_data_available
 {
@@ -327,9 +319,15 @@ sub get_data_segment
 my ( $self ) = shift;
 }
 
+sub get_error
+{
+my ( $self ) = shift;
+}
+
 sub get_internal_value
 {
 my ( $self ) = shift;
+my ( $attribute ) = shift;
 }
 
 sub set_internal_value
@@ -344,6 +342,12 @@ sub decode_data
 my ( $self ) = shift;
 }
 
+sub test_64_bit
+{
+my $self = shift;
+}
+
+
 =head1 AUTHOR
 
 Andrew S. Kennedy, C<< <shamrock at cpan.org> >>
@@ -352,7 +356,7 @@ Andrew S. Kennedy, C<< <shamrock at cpan.org> >>
 
 Please report any bugs or feature requests to
 C<bug-ipdr-cisco at rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=IPDR-Collection-Client>.
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=IPDR-Cisco>.
 I will be notified, and then you'll automatically be notified of progress on
 your bug as I make changes.
 
@@ -360,7 +364,7 @@ your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc IPDR::Collection::Client
+    perldoc IPDR::Cisco
 
 You can also look for information at:
 
@@ -368,19 +372,19 @@ You can also look for information at:
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/IPDR-Collection-Client>
+L<http://annocpan.org/dist/IPDR-Cisco>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/IPDR-Collection-Client>
+L<http://cpanratings.perl.org/d/IPDR-Cisco>
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=IPDR-Collection-Client>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=IPDR-Cisco>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/IPDR-Collection-Client>
+L<http://search.cpan.org/dist/IPDR-Cisco>
 
 =back
 
@@ -397,4 +401,4 @@ under the same terms as Perl itself.
 
 =cut
 
-1; # End of IPDR::Collection::Client
+1; # End of IPDR::Cisco
